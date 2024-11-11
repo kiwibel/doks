@@ -1,0 +1,37 @@
+# Ignore Terraform state and configuration files
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+
+# Ignore Python bytecode and cache directories
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+*.so
+
+# Ignore mypy cache
+.mypy_cache/
+
+# Ignore IDE/editor specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore log files
+*.log
+
+# Ignore virtual environments
+venv/
+.env/

@@ -1,0 +1,2 @@
+A simple Python Flask app deployed in Kubernetes in DigitalOcean.
+Infrastructure created with Terraform.

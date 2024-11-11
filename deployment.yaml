@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-python-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-python-app
+  template:
+    metadata:
+      labels:
+        app: my-python-app
+    spec:
+      containers:
+        - name: my-python-app
+          image: registry.digitalocean.com/main-vadim-nz/my-python-app
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-python-app-service
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-certificate-id: "babe75ac-6e54-45b1-b9c6-093f8f196908"
+    service.beta.kubernetes.io/do-loadbalancer-protocol: "https"
+    service.beta.kubernetes.io/do-loadbalancer-tls-ports: "443"
+spec:
+  selector:
+    app: my-python-app
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+    - name: https
+      protocol: TCP
+      port: 443
+      targetPort: 8080
+  type: LoadBalancer
